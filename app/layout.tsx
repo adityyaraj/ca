@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import { s } from "framer-motion/client";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -15,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Maulika — Portfolio",
   description:
-    "Professional portfolio of Maulika Rongala — Developer, creator, and problem solver.",
+    "Professional portfolio of Maulika Rongala — Developer and problem solver.",
 };
 
 export default function RootLayout({
