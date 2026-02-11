@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Maulika Rongala — Portfolio",
+  title: "Maulika — Portfolio",
   description:
     "Professional portfolio of Maulika Rongala — Developer, creator, and problem solver.",
 };
