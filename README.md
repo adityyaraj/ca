@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Maulika Rongala — Portfolio
 
-## Getting Started
+A personal portfolio website for **Maulika Rongala**, an AI & ML developer and B.Tech CSE (AI & ML) student at Lovely Professional University.
 
-First, run the development server:
+## ✨ About
+
+This portfolio showcases Maulika's projects, skills, work experience, education, certifications, and achievements. It features smooth scroll-triggered animations and a clean, modern design.
+
+### Highlights
+
+- **3 AI Internships** — Shell, IBM, and Microsoft (via Edunet Foundation)
+- **Projects** — Amazon clone (React + Firebase), AI-Driven Groundwater System, and more
+- **Skills** — Python, TensorFlow, PyTorch, React, C++, and more
+- **Certifications** — Coursera, Infosys Springboard
+
+## 🛠 Tech Stack
+
+- [Next.js](https://nextjs.org) (App Router)
+- [Tailwind CSS](https://tailwindcss.com)
+- [shadcn/ui](https://ui.shadcn.com) components
+- [Framer Motion](https://www.framer.com/motion/) for animations
+- TypeScript
+
+## 🚀 Getting Started
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/
+  layout.tsx       — Root layout with fonts & metadata
+  page.tsx         — Main portfolio page (all sections)
+  globals.css      — Global styles & CSS variables
+components/
+  ui/              — shadcn/ui components (Badge, Button, Card, etc.)
+lib/
+  utils.ts         — Utility functions
+```
 
-## Learn More
+## 📦 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deploy easily on [Vercel](https://vercel.com):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Or push to GitHub and connect the repo to Vercel for automatic deployments.
 
-## Deploy on Vercel
+## 📄 License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© Maulika Rongala. All rights reserved.
+# ca
