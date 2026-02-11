@@ -13,9 +13,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Aditya — Portfolio",
+  title: "Maulika Rongala — Portfolio",
   description:
-    "Professional portfolio of Aditya — Developer, creator, and problem solver.",
+    "Professional portfolio of Maulika Rongala — Developer, creator, and problem solver.",
 };
 
 export default function RootLayout({
