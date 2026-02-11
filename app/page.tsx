@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -55,6 +55,22 @@ const PROJECTS = [
     tags: ["React", "Firebase", "Stripe", "React Router", "CSS"],
     link: "#",
     date: "July 2025",
+  },
+  {
+    title: "Emotion Recognition System",
+    description:
+      "Built a hybrid emotion recognition system that detects human emotions using both facial expressions and voice data. Trained separate CNN models on FER-2013 and RAVDESS datasets for facial and audio emotion classification respectively.",
+    tags: ["Python", "TensorFlow", "OpenCV", "Librosa", "CNN", "Deep Learning"],
+    link: "https://github.com/RMaulika/Emotion-recognition",
+    date: "June 2025",
+  },
+  {
+    title: "Lecture Voice-to-Notes Generator",
+    description:
+      "Developed an AI-powered tool that converts recorded lecture audio into concise study notes and auto-generated quizzes. Uses Faster Whisper for speech-to-text and HuggingFace T5 for summarisation, with a Streamlit web interface.",
+    tags: ["Python", "Faster Whisper", "HuggingFace T5", "Streamlit", "NLP"],
+    link: "https://github.com/RMaulika/LectureVoiceToNotes",
+    date: "October 2025",
   },
   {
     title: "AI-Driven Groundwater System",
@@ -190,6 +206,7 @@ const CONTAINER = "mx-auto w-full max-w-4xl px-6 sm:px-8";
 /* ───────── COMPONENTS ───────── */
 
 function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
@@ -213,19 +230,67 @@ function Navbar() {
             </li>
           ))}
         </ul>
-        <Button variant="outline" size="sm" className="rounded-full border-primary/30 bg-warm-dim text-primary hover:bg-primary/20" asChild>
-          <a href="#contact">Get in touch</a>
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button variant="outline" size="sm" className="hidden rounded-full border-primary/30 bg-warm-dim text-primary hover:bg-primary/20 sm:inline-flex" asChild>
+            <a href="#contact">Get in touch</a>
+          </Button>
+          {/* Mobile hamburger */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground md:hidden"
+            aria-label="Toggle menu"
+          >
+            <svg className="size-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+              {mobileOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              )}
+            </svg>
+          </button>
+        </div>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.4, 0, 1] }}
+            className="overflow-hidden border-t border-border bg-background/95 backdrop-blur-xl md:hidden"
+          >
+            <ul className={`${CONTAINER} flex flex-col gap-1 py-4`}>
+              {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="block rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-card hover:text-foreground"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li className="mt-2">
+                <Button variant="outline" size="sm" className="w-full rounded-full border-primary/30 bg-warm-dim text-primary hover:bg-primary/20" asChild>
+                  <a href="#contact" onClick={() => setMobileOpen(false)}>Get in touch</a>
+                </Button>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
 
 function HeroSection() {
   return (
-    <section className="relative flex min-h-[100dvh] items-center pt-20">
+    <section className="relative flex min-h-[100dvh] items-center overflow-hidden pt-20">
       {/* Subtle warm glow */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[600px] w-[600px] rounded-full bg-primary/[0.04] blur-[140px]" />
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[400px] w-[400px] sm:h-[600px] sm:w-[600px] rounded-full bg-primary/[0.04] blur-[100px] sm:blur-[140px]" />
 
       <div className={CONTAINER}>
         <motion.div
@@ -246,7 +311,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.4, 0, 1] }}
-          className="text-4xl font-bold leading-[1.15] tracking-tight sm:text-5xl lg:text-6xl"
+          className="text-3xl font-bold leading-[1.15] tracking-tight sm:text-4xl md:text-5xl lg:text-6xl"
         >
           I&apos;m Maulika,
           <br />
@@ -257,7 +322,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5, ease: [0.25, 0.4, 0, 1] }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground"
+          className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base"
         >
           I build machine learning systems and deep learning models,
           from CNNs for emotion recognition to NLP pipelines for real-time
@@ -269,7 +334,7 @@ function HeroSection() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7, ease: [0.25, 0.4, 0, 1] }}
-          className="mt-8 flex items-center gap-4"
+          className="mt-7 flex flex-wrap items-center gap-4 sm:mt-8"
         >
           <Button className="rounded-full" asChild>
             <a href="#projects">
@@ -280,7 +345,7 @@ function HeroSection() {
             </a>
           </Button>
 
-          <Separator orientation="vertical" className="!h-6 bg-border" />
+          <Separator orientation="vertical" className="!h-6 hidden bg-border sm:block" />
 
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" asChild>
@@ -307,12 +372,12 @@ function HeroSection() {
 
 function AboutSection() {
   return (
-    <Section id="about" className="py-24">
+    <Section id="about" className="py-16 sm:py-24">
       <div className={CONTAINER}>
         <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-primary">
           About
         </motion.p>
-        <motion.h2 variants={fade} className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+        <motion.h2 variants={fade} className="mt-2 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           A bit about me
         </motion.h2>
 
@@ -334,7 +399,7 @@ function AboutSection() {
           </p>
         </motion.div>
 
-        <motion.div variants={stagger} className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <motion.div variants={stagger} className="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:gap-3 sm:grid-cols-4">
           {[
             { n: "3", l: "AI Internships" },
             { n: "5+", l: "Projects" },
@@ -358,12 +423,12 @@ function AboutSection() {
 
 function SkillsSection() {
   return (
-    <Section id="skills" className="bg-surface py-24">
+    <Section id="skills" className="bg-surface py-16 sm:py-24">
       <div className={CONTAINER}>
         <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-primary">
           Skills
         </motion.p>
-        <motion.h2 variants={fade} className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+        <motion.h2 variants={fade} className="mt-2 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           Technical toolkit
         </motion.h2>
 
@@ -394,18 +459,18 @@ function SkillsSection() {
 
 function ProjectsSection() {
   return (
-    <Section id="projects" className="py-24">
+    <Section id="projects" className="py-16 sm:py-24">
       <div className={CONTAINER}>
         <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-primary">
           Projects
         </motion.p>
-        <motion.h2 variants={fade} className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+        <motion.h2 variants={fade} className="mt-2 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           Selected work
         </motion.h2>
 
         <Separator className="mt-6 bg-border" />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-8 grid gap-3 sm:mt-10 sm:gap-4 md:grid-cols-2">
           {PROJECTS.map((project) => (
             <motion.div key={project.title} variants={fade}>
               <a href={project.link} className="group block h-full">
@@ -445,12 +510,12 @@ function ProjectsSection() {
 
 function ExperienceSection() {
   return (
-    <Section id="experience" className="bg-surface py-24">
+    <Section id="experience" className="bg-surface py-16 sm:py-24">
       <div className={CONTAINER}>
         <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-primary">
           Experience
         </motion.p>
-        <motion.h2 variants={fade} className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+        <motion.h2 variants={fade} className="mt-2 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           Where I&apos;ve worked
         </motion.h2>
 
@@ -492,18 +557,18 @@ function ExperienceSection() {
 
 function EducationSection() {
   return (
-    <Section id="education" className="py-24">
+    <Section id="education" className="py-16 sm:py-24">
       <div className={CONTAINER}>
         <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-primary">
           Education
         </motion.p>
-        <motion.h2 variants={fade} className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+        <motion.h2 variants={fade} className="mt-2 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           Academic background
         </motion.h2>
 
         <Separator className="mt-6 bg-border" />
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:mt-10 sm:gap-4 md:grid-cols-3">
           {EDUCATION.map((edu) => (
             <motion.div key={edu.institution} variants={fade}>
               <Card className="h-full border-border bg-card">
@@ -529,18 +594,18 @@ function EducationSection() {
 
 function CertificationsSection() {
   return (
-    <Section className="bg-surface py-24">
+    <Section className="bg-surface py-16 sm:py-24">
       <div className={CONTAINER}>
         <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-primary">
           Certifications & Achievements
         </motion.p>
-        <motion.h2 variants={fade} className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+        <motion.h2 variants={fade} className="mt-2 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           Recognition
         </motion.h2>
 
         <Separator className="mt-6 bg-border" />
 
-        <div className="mt-10 grid gap-8 sm:grid-cols-2">
+        <div className="mt-8 grid gap-6 sm:mt-10 sm:gap-8 sm:grid-cols-2">
           <motion.div variants={fade} className="space-y-3">
             <h3 className="mb-1 text-sm font-semibold">Certificates</h3>
             {CERTIFICATES.map((cert) => (
@@ -575,12 +640,12 @@ function CertificationsSection() {
 
 function ContactSection() {
   return (
-    <Section id="contact" className="py-24">
+    <Section id="contact" className="py-16 sm:py-24">
       <div className={CONTAINER}>
         <motion.p variants={fade} className="text-xs font-semibold uppercase tracking-widest text-primary">
           Contact
         </motion.p>
-        <motion.h2 variants={fade} className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
+        <motion.h2 variants={fade} className="mt-2 text-xl font-bold tracking-tight sm:text-2xl md:text-3xl">
           Let&apos;s work together
         </motion.h2>
 
@@ -591,7 +656,7 @@ function ContactSection() {
           opportunities. Feel free to reach out.
         </motion.p>
 
-        <motion.div variants={fade} custom={2} className="mt-8 flex flex-wrap items-center gap-3">
+        <motion.div variants={fade} custom={2} className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8">
           <Button className="rounded-full" asChild>
             <a href="mailto:maulika@example.com">
               <MailIcon className="size-4" />
@@ -618,8 +683,8 @@ function ContactSection() {
 
 function Footer() {
   return (
-    <footer className="border-t border-border py-8">
-      <div className={`${CONTAINER} flex flex-col items-center justify-between gap-3 sm:flex-row`}>
+    <footer className="border-t border-border py-6 sm:py-8">
+      <div className={`${CONTAINER} flex flex-col items-center justify-between gap-2 sm:flex-row sm:gap-3`}>
         <span className="text-xs text-muted-foreground">
           &copy; {new Date().getFullYear()} Maulika Rongala
         </span>
