@@ -649,16 +649,33 @@ function CertificationsSection() {
           <motion.div variants={fade} className="space-y-3">
             <h3 className="mb-1 text-sm font-semibold">Certificates</h3>
             {CERTIFICATES.map((cert) => (
-              <Card key={cert.title} className="border-border bg-card">
-                <CardContent className="p-4">
-                  <h4 className="text-sm font-medium">{cert.title}</h4>
-                  <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
-                    <span className="text-primary">{cert.issuer}</span>
-                    <Separator orientation="vertical" className="!h-3 bg-border" />
-                    <span>{cert.date}</span>
-                  </div>
-                </CardContent>
-              </Card>
+              <div key={cert.title}>
+                {cert.link ? (
+                  <a href={cert.link} target="_blank" rel="noopener noreferrer" className="block">
+                    <Card className="border-border bg-card transition-shadow hover:shadow-md">
+                      <CardContent className="p-4">
+                        <h4 className="text-sm font-medium">{cert.title}</h4>
+                        <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
+                          <span className="text-primary">{cert.issuer}</span>
+                          <Separator orientation="vertical" className="!h-3 bg-border" />
+                          <span>{cert.date}</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </a>
+                ) : (
+                  <Card className="border-border bg-card">
+                    <CardContent className="p-4">
+                      <h4 className="text-sm font-medium">{cert.title}</h4>
+                      <div className="mt-1.5 flex items-center gap-2 text-xs text-muted-foreground">
+                        <span className="text-primary">{cert.issuer}</span>
+                        <Separator orientation="vertical" className="!h-3 bg-border" />
+                        <span>{cert.date}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+              </div>
             ))}
           </motion.div>
 
