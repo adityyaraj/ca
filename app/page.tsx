@@ -106,7 +106,7 @@ const EXPERIENCE = [
     role: "AI Intern",
     company: "Shell",
     via: "Edunet Foundation",
-    period: "Oct 2025 — Present",
+    period: "Oct 2025 — Dec 2025",
     description:
       "Improved waste classification accuracy using MobileNetV2-based model for Organic vs Recyclable waste. Reduced model size by 40% using quantization for faster inference on low-power IoT deployments.",
     tech: ["Python", "TensorFlow/Keras", "MobileNetV2", "Scikit-learn", "NumPy"],
@@ -334,8 +334,8 @@ function HeroSection() {
         >
           I build machine learning systems and deep learning models,
           from CNNs for emotion recognition to NLP pipelines for real-time
-          transcription. Currently interning at Shell, with prior
-          experience at IBM and Microsoft.
+          transcription. Currently interning at Infosys, with prior
+          experience at IBM, Shell, and Microsoft.
         </motion.p>
 
         <motion.div
