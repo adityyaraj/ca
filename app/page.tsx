@@ -147,7 +147,7 @@ const EDUCATION = [
     institution: "Lovely Professional University",
     location: "Punjab, India",
     degree: "B.Tech — Computer Science & Engineering (AI & ML)",
-    score: "CGPA: 6.42",
+    score: "CGPA: 6.89",
     period: "Aug 2023 — Present",
   },
   {
@@ -402,7 +402,7 @@ function AboutSection() {
         <motion.div variants={stagger} className="mt-8 grid grid-cols-2 gap-2 sm:mt-10 sm:gap-3 sm:grid-cols-4">
           {[
             { n: "3", l: "AI Internships" },
-            { n: "5+", l: "Projects" },
+            { n: "7+", l: "Projects" },
             { n: "3", l: "Certifications" },
             { n: "40%", l: "Model Reduction" },
           ].map((s) => (
