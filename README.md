@@ -59,10 +59,4 @@ Or push to GitHub and connect the repo to Vercel for automatic deployments.
 ## 📄 License
 
 © Maulika Rongala. All rights reserved.
-# ca
-# ca
-# ca
-# ca
-# ca
-# ca
-# ca
+
