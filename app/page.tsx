@@ -6,8 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-
-/* ───────── ANIMATION HELPERS ───────── */
+ 
 const fade = {
   hidden: { opacity: 0, y: 28 },
   visible: (i: number = 0) => ({
