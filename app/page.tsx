@@ -124,7 +124,7 @@ const EXPERIENCE = [
     role: "AI Intern",
     company: "Microsoft",
     via: "Edunet Foundation",
-    period: "May 2025 — Jun 2025",
+    period: "May 2025 — Jul 2025",
     description:
       "Achieved improved emotion recognition accuracy on FER-2013 dataset through augmentation, hyperparameter tuning, and CNN enhancements. Designed the model for practical use in human-computer interaction and sentiment analysis.",
     tech: ["TensorFlow", "OpenCV", "NumPy", "Scikit-learn", "Pandas"],
